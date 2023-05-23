@@ -1,19 +1,9 @@
 # Commerce
 
 ## Table of contents
-- [Description and requirements](#description-and-requirements)
-- [Preview](#preview)
 - [Installation](#installation)
-
-## Description and requirements
-An eBay-like e-commerce auction site that will allow users to post auction listings, place bids on listings, comment on those listings, and add listings to a “watchlist.”
-
-## Preview
-### All Listings
-![All_Listings](https://github.com/ZhuoweiWen/Commerce/assets/36636157/1972808c-ca2d-40ef-9ee1-b4a176183ee8)
-
-### Listing Page
-![Listing_page](https://github.com/ZhuoweiWen/Commerce/assets/36636157/b965573c-46a8-4d8c-9e68-0b8f5ddc50e0)
+- [Description](#description)
+- [Preview](#preview)
 
 ## Installation
 To set up this project on your computer:
@@ -29,5 +19,16 @@ To set up this project on your computer:
     ```
     python manage.py migrate
     ```
+
+## Description
+An eBay-like e-commerce auction site that will allow users to post auction listings, place bids on listings, comment on those listings, and add listings to a “watchlist.”
+
+## Preview
+### All Listings
+![All_Listings](https://github.com/ZhuoweiWen/Commerce/assets/36636157/1972808c-ca2d-40ef-9ee1-b4a176183ee8)
+
+### Listing Page
+![Listing_page](https://github.com/ZhuoweiWen/Commerce/assets/36636157/b965573c-46a8-4d8c-9e68-0b8f5ddc50e0)
+
 
 ---

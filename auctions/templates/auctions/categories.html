@@ -1,0 +1,30 @@
+{% extends "auctions/layout.html" %}
+
+{% block title %}
+Categories
+{% endblock %}
+
+
+{% block body %}
+    <style>
+        /* Style for the buttons*/
+        .btn{
+            display: inline-block;
+            background-color: cornflowerblue;
+            color:white;
+            cursor:pointer;
+            font:bold;
+            margin-top: 20px;
+            margin-right: 50px;
+            padding: 20px;
+            width: 200px;
+        }
+    </style>
+    <h2> Categories </h2>
+
+    {% for category in categories %}
+        <a class="btn" href="{% url 'categories_search' category.0 %}"> 
+            {{category.1}}</a>
+    {% endfor %}
+
+{% endblock %}

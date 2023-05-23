@@ -1,0 +1,11 @@
+CATEGORY_CHOICE = ((0, "Miscellaneous"),
+                    (1, "Art"),
+                    (2, "Auto Parts"),
+                    (3, "Book"),
+                    (4, "Electronics"),
+                    (5, "Fashion"),
+                    (6, "Gear"),
+                    (7, "Home"),
+                    (8, "Music Instruments"),
+                    (9, "TV/Movie disc"),
+                    (10, "Video Games"))

@@ -1,0 +1,122 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>{% block title %}Auctions{% endblock %}</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css">
+        <link href="{% static 'auctions/styles.css' %}" rel="stylesheet">
+    </head>
+    <body>
+        <style>
+            body {
+    font-family: Arial, sans-serif;
+}
+
+.container-fluid {
+    padding-right: 0;
+    padding-left: 0;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.sidebar {
+        background-color: #f8f9fa;
+        border-right: 1px solid #dee2e6;
+    }
+
+    .sidebar .nav-link {
+        color: #212529;
+    }
+
+    .sidebar .nav-link:hover {
+        color: #007bff;
+        background-color: #e9ecef;
+    }
+
+    .sidebar .nav-link .bi {
+        margin-right: 2px;
+    }
+
+.main {
+    margin-left: 250px; /* Same as the width of the sidebar */
+    padding: 20px;
+}
+
+.nav-item {
+    padding: 0;
+}
+
+.nav-item:first-child {
+    padding-top: 0;
+}
+
+.nav-item:last-child {
+    padding-bottom: 0;
+}
+        </style>
+        <div class="container-fluid">
+            <div class="row">
+                <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+                    <div class="sidebar-sticky">
+                        <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+                            <span>Categories</span>
+                        </h6>
+                        <ul class="nav flex-column">
+                            <li class="nav-item"><a class="nav-link" href="{% url 'categories_search' 0 %}"><i class="bi bi-patch-question"></i> Miscellaneous</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{% url 'categories_search' 1 %}"><i class="bi bi-brush"></i> Art</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{% url 'categories_search' 2 %}"><i class="bi bi-tools"></i> Auto Parts</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{% url 'categories_search' 3 %}"><i class="bi bi-book-half"></i> Book</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{% url 'categories_search' 4 %}"><i class="bi bi-tv"></i> Electronics</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{% url 'categories_search' 5 %}"><i class="bi bi-tag"></i> Fashion</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{% url 'categories_search' 6 %}"><i class="bi bi-gear-wide-connected"></i> Gear</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{% url 'categories_search' 7 %}"><i class="bi bi-house-door"></i> Home</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{% url 'categories_search' 8 %}"><i class="bi bi-music-note-list"></i> Music Instruments</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{% url 'categories_search' 9 %}"><i class="bi bi-tv-fill"></i> TV/Movie disc</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{% url 'categories_search' 10 %}"><i class="bi bi-joystick"></i> Video Games</a></li>
+                        </ul>
+                    </div>
+                </nav>
+    
+                <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+                    
+                    <div class="d-flex justify-content-end">
+                        <ul class="nav">
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'index' %}">Active Listings</a>
+                            </li>
+                            {% if user.is_authenticated %}
+                
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{% url 'create' %}">Create Listing</a>
+                                </li>
+                                
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{% url 'watchlist' %}">Watchlist</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{% url 'logout' %}">Log Out</a>
+                                </li>
+                                
+                
+                                
+                            {% else %}
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{% url 'login' %}">Log In</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{% url 'register' %}">Register</a>
+                                </li>
+                            
+                            {% endif %}
+                        </ul>
+                    </div>
+                    {% block body %}
+                    {% endblock %}
+                </main>
+            </div>
+        </div>
+        
+    </body>
+</html>

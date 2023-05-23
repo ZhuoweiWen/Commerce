@@ -1,0 +1,89 @@
+{% extends "auctions/layout.html" %}
+
+
+{% block title %}
+Watchlists
+{% endblock %}
+
+{% block body %}
+
+<style>
+    
+    .card {
+        margin-bottom: 30px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        transition: transform .2s;
+        border: none;
+    }
+    
+    .card:hover {
+        transform: scale(1.02);
+        box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 12px 40px 0 rgba(0, 0, 0, 0.19);
+    }
+    
+    .card img {
+        max-height: 200px;
+        object-fit: cover;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+    }
+
+    .card-body {
+        padding: 15px;
+        background-color: #fff;
+    }
+
+    .card-title {
+        font-size: 20px;
+        font-weight: 600;
+    }
+    
+    .card-text {
+        font-size: 16px;
+    }
+    
+    .text-muted {
+        font-size: 14px;
+    }
+
+    .card-price {
+        color: #B12704;
+        font-size: 18px;
+        font-weight: 600;
+    }
+</style>
+
+<div class="container mt-3">
+<h2 class="text-center" style="margin-bottom: 50px;">Watchlist</h2>
+{% for watchlist in watchlists %}
+<div class="col-md-4">
+<div class= "card" onclick="location.href='{% url 'listing' watchlist.watchlist_item.id %}';" style="cursor: pointer;">
+    <img src="{{watchlist.watchlist_item.url}}" class="card-img-top" alt="No Image has been uploaded for this listing">
+    <div class="card-body">
+        <p class="card-title">
+            {{watchlist.watchlist_item.name}}
+        </p>
+        <p class="card-text">
+            Price: ${{watchlist.watchlist_item.price}}
+        </p>
+        <p class="card-text">
+            Seller: {{watchlist.watchlist_item.user.username}}
+        </p>
+        <p class="card-text">
+            <a class= "btn btn-secondary" href="{% url 'removeFromWatchlist' watchlist.watchlist_item.id%}"> Remove From Watchlist</a>
+        </p>
+
+
+    </div>
+</div>
+</div>
+
+
+{% empty %}
+<h5>Your watchlist is empty</h5>
+{% endfor %}
+
+</div>
+
+{% endblock %}

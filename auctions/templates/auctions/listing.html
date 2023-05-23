@@ -1,0 +1,184 @@
+{% extends "auctions/layout.html" %} 
+{% block title %} Listing 
+{% endblock %} 
+
+{%block body %}
+
+<style>
+    body {
+    background-color: #f8f9fa;
+}
+
+.container {
+        max-width: 960px;
+    }
+
+    .card {
+        border-radius: 15px;
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+        transition: 0.3s;
+        margin-bottom: 1rem;
+    }
+
+    .card:hover {
+        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    }
+
+    .card-header {
+        background-color: #007BFF;
+        color: #fff;
+        font-weight: bold;
+        border-radius: 15px 15px 0 0;
+    }
+
+    .card-body {
+        padding: 1.5rem;
+    }
+    
+    .card-title {
+    color: #007BFF;
+    font-weight: bold;
+}
+
+    .btn {
+        color: #fff;
+        background-color: #007BFF;
+        border-color: #007BFF;
+        border-radius: 30px;
+        transition: 0.3s;
+    }
+
+    .btn:hover {
+        color: #fff;
+        background-color: #0056b3;
+        border-color: #004085;
+    }
+
+    .btn-secondary {
+        color: #fff;
+        background-color: #6c757d;
+        border-color: #6c757d;
+    }
+
+    .btn-secondary:hover {
+        color: #fff;
+        background-color: #5a6268;
+        border-color: #545b62;
+    }
+
+    .card img {
+        border-radius: 15px 15px 0 0;
+        max-height: 1000px;
+    }
+</style>
+
+<div class="container mt-5">
+  {% if messages %} 
+  {% for message in messages %}
+  <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+  {% endfor %} 
+  {% endif %} 
+  {% if winner %}
+  <div class="alert alert-success">
+    Congratulation!! You won the bid of this listing
+  </div>
+  {% endif %} 
+  {% if item.closed %}
+  <div class="alert alert-danger">This listing is closed!</div>
+  {% endif %}
+
+  <h2 class="mb-4">
+    {{item.name}} 
+    {% if logIn and not item.closed and inWatchlist%} 
+    <a
+      class="btn btn-secondary float-right"
+      href="{% url 'removeFromListing' item.id%}"
+      >Remove from WatchList</a
+    >
+    {% else %}
+    <a
+      class="btn btn-secondary float-right"
+      href="{% url 'addToWatchlist' item.id%}"
+      >Add to WatchList</a
+    >
+    {% endif %}
+  </h2>
+  <div class="card mb-4">
+    <img
+      class="card-img-top"
+      src="{{item.url}}"
+      alt="No Image has been uploaded for this listing"
+    />
+  </div>
+
+  
+
+  <!-- Details of item -->
+  <div class="card mb-4">
+    <div class="card-body">
+      <h4 class="card-title">Details</h4>
+      <p class="card-text">Listed By: {{item.user.username}}</p>
+      <p class="card-text">Listed At: {{item.time}}</p>
+      <p class="card-text">Description: {{item.description}}</p>
+    </div>
+  </div>
+
+  <!-- Bidding section -->
+  <div class="card mb-4">
+    <div class="card-body">
+      <h4 class="card-title">Bids</h4>
+      {% if not item.closed and no_bid %} 
+      <p class="card-text">Starting at: ${{item.price}}</p>
+      {% elif not item.closed and not no_bid%}
+      <p>
+        {% if cur_winner %}
+        <p class="card-text">Your bid is the highest bid</p>
+        {% else %}
+        <p class="card-text">Starting at: ${{max_bid.user_bid}}</p>
+        {% endif %}
+      </p>
+      {% endif %}
+      {% if owner and not item.closed %}
+      <form action="{% url 'close' item.id%}" method="post">
+        {% csrf_token %}
+        <input class="btn btn-primary" type="submit" value="Close Auction" />
+      </form>
+      {% elif logIn and not owner and not item.closed %}
+      <form action="{% url 'bid' item.id%}" method="post">
+        {% csrf_token %} {{bid_form}}
+        <input class="btn btn-primary mt-2" type="submit" value="Place Bid" />
+      </form>
+      {% endif %}
+    </div>
+  </div>
+
+  <!-- Comment section -->
+  <div class="card mb-4">
+    <div class="card-body">
+      <h4 class="card-title">Comments</h4>
+      {% for comment in comments %}
+      <div class="card mb-3">
+        <div class="card-body">
+          <h5 class="card-title">
+            {{comment.user.username}} - {{comment.time}}
+          </h5>
+          <p class="card-text">{{comment.comment_section}}</p>
+        </div>
+      </div>
+      {% empty %}
+      <p class="card-text">No comment yet</p>
+      {% endfor %} {% if logIn %}
+      <form action="{% url 'comment' item.id %}" method="post">
+        {% csrf_token %} {{comment_form}}
+        <input
+          class="btn btn-primary mt-2"
+          type="submit"
+          value="Post comment"
+        />
+      </form>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+{% endblock %}

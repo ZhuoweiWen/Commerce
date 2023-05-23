@@ -1,0 +1,54 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+.container-fluid {
+    padding-right: 0;
+    padding-left: 0;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.sidebar {
+    /* padding: 20px; */
+    border-right: 1px solid #ededed;
+    position: fixed;
+    height: 100%;
+    overflow: auto;
+    background-color: #506b86;
+}
+
+.sidebar .nav-link {
+    font-weight: 500;
+    color: #333;
+}
+
+.sidebar .nav-link:hover {
+    color: #007bff;
+}
+
+.main {
+    margin-left: 250px; /* Same as the width of the sidebar */
+    padding: 20px;
+}
+
+.nav-item {
+    padding: 0;
+}
+
+.nav-item:first-child {
+    padding-top: 0;
+}
+
+.nav-item:last-child {
+    padding-bottom: 0;
+}
+
+.card {
+    margin-bottom: 30px;
+}
+
+.card img {
+    max-height: 200px;
+    object-fit: cover;
+}

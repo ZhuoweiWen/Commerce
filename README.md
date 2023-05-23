@@ -1,4 +1,4 @@
-# CS50-Commerce
+# Commerce
 
 ## Table of contents
 - [Description and requirements](#description-and-requirements)

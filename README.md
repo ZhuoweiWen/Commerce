@@ -19,6 +19,10 @@ To set up this project on your computer:
     ```
     python manage.py migrate
     ```
+4. Run
+    ```
+    python manage.py runserver
+    ```
 
 ## Description
 An eBay-like e-commerce auction site that allows users to add auction listings, place bids, add comments on listing.

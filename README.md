@@ -21,7 +21,7 @@ To set up this project on your computer:
     ```
 
 ## Description
-An eBay-like e-commerce auction site that will allow users to post auction listings, place bids on listings, comment on those listings, and add listings to a “watchlist.”
+An eBay-like e-commerce auction site that allows users to add auction listings, place bids, add comments on listing.
 
 ## Preview
 ### All Listings
